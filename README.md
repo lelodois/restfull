@@ -21,6 +21,9 @@ http://localhost:9999/swagger-ui.html
 
 ## Endpoints
 
+[Postman Collection](https://github.com/lelodois/restfull/blob/master/LancamentoContabil.postman_collection.json)
+
+
 
 |HTTP Request                                            |
 |--------------------------------------------------------|
@@ -29,3 +32,5 @@ http://localhost:9999/swagger-ui.html
 |GET  /lancamentos-contabeis/?contaContabil=1111021      |
 |GET  /lancamentos-contabeis/_status/                    |
 |GET  /lancamentos-contabeis/_status/?contaContabil=121  |
+
+
