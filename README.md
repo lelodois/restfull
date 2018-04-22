@@ -9,9 +9,9 @@
 * Spring boot 2.0
 * Tomcat embedded
 * Hibernate
-* Swagger
-* H2
-* Junit
+* Swagger2
+* H2 
+* Junit RestTemplate
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ http://localhost:9999/swagger-ui.html
 
 ## Endpoints
 
-[Postman Collection](https://github.com/lelodois/restfull/blob/master/LancamentoContabil.postman_collection.json)
+### [Postman Collection](https://github.com/lelodois/restfull/blob/master/LancamentoContabil.postman_collection.json)
 
 
 
