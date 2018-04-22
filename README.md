@@ -17,3 +17,15 @@
 
 Run RestFullApplication.java 
 http://localhost:9999/swagger-ui.html
+
+
+## Endpoints
+
+
+|HTTP Request                                            |
+|--------------------------------------------------------|
+|POST /lancamentos-contabeis/ 
+|GET  /lancamentos-contabeis/{id}                        | 
+|GET  /lancamentos-contabeis/?contaContabil=1111021      |
+|GET  /lancamentos-contabeis/_status/                    |
+|GET  /lancamentos-contabeis/_status/?contaContabil=121  |
