@@ -11,6 +11,8 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import br.com.lelo.restfull.exception.NotFoundItemException;
+
 @MappedSuperclass
 public class BaseModel implements Serializable {
 
@@ -39,6 +41,14 @@ public class BaseModel implements Serializable {
 
     public final void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public static UUID fromString(String stringUuid) {
+        try {
+            return UUID.fromString(stringUuid);
+        } catch (Exception e) {
+            throw new NotFoundItemException();
+        }
     }
 
 }

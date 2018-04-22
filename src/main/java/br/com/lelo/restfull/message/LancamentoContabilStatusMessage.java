@@ -2,6 +2,8 @@ package br.com.lelo.restfull.message;
 
 import java.math.BigDecimal;
 
+import br.com.lelo.restfull.domain.LancamentoContabil;
+
 public class LancamentoContabilStatusMessage {
 
     private BigDecimal soma = BigDecimal.ZERO;
@@ -9,6 +11,11 @@ public class LancamentoContabilStatusMessage {
     private BigDecimal max = BigDecimal.ZERO;
     private BigDecimal media = BigDecimal.ZERO;
     private BigDecimal quantidade = BigDecimal.ZERO;
+
+    public void initByLancamento(LancamentoContabil lancamento) {
+        this.min = lancamento.getValor();
+        this.max = lancamento.getValor();
+    }
 
     public BigDecimal getMax() {
         return max;

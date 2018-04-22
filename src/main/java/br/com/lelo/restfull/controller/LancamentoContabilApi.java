@@ -1,7 +1,6 @@
 package br.com.lelo.restfull.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,22 +19,24 @@ import br.com.lelo.restfull.message.LancamentoContabilStatusMessage;
 import br.com.lelo.restfull.service.MovimentoContabilService;
 
 @RestController
-@RequestMapping("lancamentos-contabeis/")
+@RequestMapping(LancamentoContabilApi.URI)
 public class LancamentoContabilApi {
+
+    public static final String URI = "lancamentos-contabeis/";
 
     @Autowired
     private MovimentoContabilService service;
 
     @PostMapping
-    public ResponseEntity<UUID> adicionar(@Validated @RequestBody(required = true) LancamentoContabilMessage message) {
-
+    public ResponseEntity<String> adicionar(
+            @Validated @RequestBody(required = true) LancamentoContabilMessage message) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.novoLancamento(message));
     }
 
     @GetMapping("{id}")
     public ResponseEntity<LancamentoContabilMessage> getById(@PathVariable String id) {
 
-        return ResponseEntity.ok(service.getLancamentoById(UUID.fromString(id)));
+        return ResponseEntity.ok(service.getLancamentoById(id));
     }
 
     @GetMapping
@@ -46,15 +47,12 @@ public class LancamentoContabilApi {
     }
 
     @GetMapping("_status/")
-    public ResponseEntity<LancamentoContabilStatusMessage> getStatus() {
-
-        return ResponseEntity.ok(service.getLancamentoStatus());
-    }
-
-    @GetMapping("_status/{contaContabil}")
     public ResponseEntity<LancamentoContabilStatusMessage> getStatusByContaContabil(
-            @RequestParam(required = true, value = "contaContabil") Long contaContabil) {
+            @RequestParam(required = false, value = "contaContabil") Long contaContabil) {
 
+        if (contaContabil == null) {
+            return ResponseEntity.ok(service.getLancamentoStatus());
+        }
         return ResponseEntity.ok(service.getLancamentoStatusByContaContabil(contaContabil));
     }
 

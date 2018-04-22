@@ -2,13 +2,13 @@ package br.com.lelo.restfull.business;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.lelo.restfull.domain.BaseModel;
 import br.com.lelo.restfull.domain.ContaContabil;
 import br.com.lelo.restfull.domain.LancamentoContabil;
 import br.com.lelo.restfull.exception.NotFoundItemException;
@@ -28,22 +28,22 @@ public class LancamentoContabilReadBusiness {
     public LancamentoContabilWriteBusiness contaContabilBusiness;
 
     @Transactional(readOnly = true)
-    public LancamentoContabil findLancamentoById(UUID id) {
-        Optional<LancamentoContabil> maybeLancamento = lancamentoRepository.findById(id);
-        
+    public LancamentoContabil findLancamentoById(String id) {
+        Optional<LancamentoContabil> maybeLancamento = lancamentoRepository.findById(BaseModel.fromString(id));
+
         if (maybeLancamento.isPresent() == false) {
-            throw new NotFoundItemException(id.toString());
+            throw new NotFoundItemException();
         }
 
         return maybeLancamento.get();
     }
-    
+
     @Transactional(readOnly = true)
     public List<LancamentoContabil> findLancamentosByContaContabil(Long contaContabil) {
         Optional<ContaContabil> maybeContaContabil = this.findContaByCodigo(contaContabil);
-        
+
         if (maybeContaContabil.isPresent() == false) {
-            throw new NotFoundItemException(contaContabil.toString());
+            throw new NotFoundItemException();
         }
         return maybeContaContabil.get().getLancamentos();
     }

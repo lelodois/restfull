@@ -1,14 +1,13 @@
 package br.com.lelo.restfull.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.lelo.restfull.business.LancamentoContabilWriteBusiness;
 import br.com.lelo.restfull.business.LancamentoContabilReadBusiness;
 import br.com.lelo.restfull.business.LancamentoContabilStatusBusiness;
+import br.com.lelo.restfull.business.LancamentoContabilWriteBusiness;
 import br.com.lelo.restfull.domain.LancamentoContabil;
 import br.com.lelo.restfull.message.LancamentoContabilMessage;
 import br.com.lelo.restfull.message.LancamentoContabilStatusMessage;
@@ -34,13 +33,13 @@ class LancamentoContabilService implements MovimentoContabilService {
     public Converter<LancamentoContabil, LancamentoContabilMessage> messageConverter;
 
     @Override
-    public UUID novoLancamento(LancamentoContabilMessage message) {
+    public String novoLancamento(LancamentoContabilMessage message) {
         return lancamentoWriteBusiness.novoLancamento(
                                             modelConverter.convert(message));
     }
 
     @Override
-    public LancamentoContabilMessage getLancamentoById(UUID id) {
+    public LancamentoContabilMessage getLancamentoById(String id) {
         return messageConverter.convert(
                                     lancamentoReadBusiness.findLancamentoById(id));
     }

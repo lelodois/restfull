@@ -13,25 +13,24 @@ import br.com.lelo.restfull.message.LancamentoContabilStatusMessage;
 public class LancamentoContabilStatusBusiness {
 
     public LancamentoContabilStatusMessage getStatus(List<LancamentoContabil> lancamentos) {
+
         LancamentoContabilStatusMessage status = new LancamentoContabilStatusMessage();
 
-        lancamentos.forEach(item -> {
+        if (lancamentos.isEmpty()) {
+            return status;
+        }
 
+        status.initByLancamento(lancamentos.get(0));
+
+        lancamentos.forEach(item -> {
             status.setSoma(status.getSoma().add(item.getValor()));
             status.setMax(this.getMaxValue(status.getMax(), item.getValor()));
             status.setMin(this.getMinValue(status.getMin(), item.getValor()));
-
         });
 
         status.setQuantidade(new BigDecimal(lancamentos.size()));
-
-        atribuirMedia(status);
+        status.setMedia(status.getSoma().divide(status.getQuantidade(), RoundingMode.HALF_UP));
         return status;
-    }
-
-    private void atribuirMedia(LancamentoContabilStatusMessage status) {
-        if (status.getQuantidade().compareTo(BigDecimal.ZERO) != 0)
-            status.setMedia(status.getSoma().divide(status.getQuantidade(), RoundingMode.HALF_UP));
     }
 
     private BigDecimal getMaxValue(BigDecimal primeiroValor, BigDecimal segundoValor) {
