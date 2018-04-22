@@ -1,0 +1,94 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Lancamento Contabil",
+		"_postman_id": "88cfd0a5-4474-96d6-3aa7-dff9aec83a9f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Insert",
+			"request": {
+				"url": "http://localhost:9999/lancamentos-contabeis/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"contaContabil\": 1221001,\n  \"data\": 20160131,\n  \"valor\": 2400000.15\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Pesquisa pelo Id",
+			"request": {
+				"url": "http://localhost:9999/lancamentos-contabeis/de359f83-0a3d-40ff-af78-b9d4471cbcc1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Pesquisa pela conta",
+			"request": {
+				"url": {
+					"raw": "http://localhost:9999/lancamentos-contabeis/?contaContabil=1111001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"lancamentos-contabeis",
+						""
+					],
+					"query": [
+						{
+							"key": "contaContabil",
+							"value": "1111001",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Status pela conta",
+			"request": {
+				"url": "http://localhost:9999/lancamentos-contabeis/de359f83-0a3d-40ff-af78-b9d4471cbcc1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Status todos",
+			"request": {
+				"url": "http://localhost:9999/lancamentos-contabeis/_status/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		}
+	]
+}
